@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.wx.elephant.biz.mapper.CardMapper">
-    <!-- <5d1fdc> 从本行到锚点<e4a43f>之间的内容，由Allison 1875生成，请勿人为修改 -->
+    <!-- [START] Allison 1875 Lot No: PG0808R-E326B95E (don't modify manually) -->
 
     <resultMap id="all" type="cn.wx.elephant.biz.bean.entity.CardEntity">
         <id column="id" property="id"/>
@@ -13,19 +13,19 @@
     </resultMap>
 
     <sql id="all">
-        id, name, type, name_sort, create_time, update_time
+        `id`, `name`, `type`, `name_sort`, `create_time`, `update_time`
     </sql>
 
     <insert id="insert" parameterType="cn.wx.elephant.biz.bean.entity.CardEntity">
         <!-- @formatter:off -->
-        INSERT INTO card
+        INSERT INTO `card`
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id!=null"> id, </if>
-            <if test="name!=null"> name, </if>
-            <if test="type!=null"> type, </if>
-            <if test="nameSort!=null"> name_sort, </if>
-            <if test="createTime!=null"> create_time, </if>
-            <if test="updateTime!=null"> update_time, </if>
+            <if test="id!=null"> `id`, </if>
+            <if test="name!=null"> `name`, </if>
+            <if test="type!=null"> `type`, </if>
+            <if test="nameSort!=null"> `name_sort`, </if>
+            <if test="createTime!=null"> `create_time`, </if>
+            <if test="updateTime!=null"> `update_time`, </if>
         </trim>
         <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
             <if test="id!=null"> #{id}, </if>
@@ -41,14 +41,14 @@
     <insert id="batchInsert">
         <!-- @formatter:off -->
         <foreach collection="entities" item="one" separator=";">
-            INSERT INTO card
+            INSERT INTO `card`
             <trim prefix="(" suffix=")" suffixOverrides=",">
-                <if test="one.id!=null"> id, </if>
-                <if test="one.name!=null"> name, </if>
-                <if test="one.type!=null"> type, </if>
-                <if test="one.nameSort!=null"> name_sort, </if>
-                <if test="one.createTime!=null"> create_time, </if>
-                <if test="one.updateTime!=null"> update_time, </if>
+                <if test="one.id!=null"> `id`, </if>
+                <if test="one.name!=null"> `name`, </if>
+                <if test="one.type!=null"> `type`, </if>
+                <if test="one.nameSort!=null"> `name_sort`, </if>
+                <if test="one.createTime!=null"> `create_time`, </if>
+                <if test="one.updateTime!=null"> `update_time`, </if>
             </trim>
             <trim prefix="VALUE (" suffix=")" suffixOverrides=",">
                 <if test="one.id!=null"> #{one.id}, </if>
@@ -64,28 +64,28 @@
 
     <insert id="batchInsertEvenNull">
         <!-- @formatter:off -->
-        INSERT INTO card
+        INSERT INTO `card`
             ( <include refid="all"/> )
         VALUES
-            <foreach collection="entities" item="one" separator=",">
+            <foreach collection="entities" item="one" separator=",">(
+                #{one.id}, #{one.name}, #{one.type}, #{one.nameSort}, #{one.createTime}, #{one.updateTime}
+            )</foreach>
         <!-- @formatter:on -->
-                ( #{one.id}, #{one.name}, #{one.type}, #{one.nameSort}, #{one.createTime}, #{one.updateTime} )
-            </foreach>
     </insert>
 
     <update id="batchUpdate">
         <foreach collection="entities" item="one" separator=";">
             <!-- @formatter:off -->
-            UPDATE card
+            UPDATE `card`
             <set>
-                <if test="one.name!=null"> name = #{one.name}, </if>
-                <if test="one.type!=null"> type = #{one.type}, </if>
-                <if test="one.nameSort!=null"> name_sort = #{one.nameSort}, </if>
-                <if test="one.createTime!=null"> create_time = #{one.createTime}, </if>
-                <if test="one.updateTime!=null"> update_time = #{one.updateTime}, </if>
+                <if test="one.name!=null"> `name` = #{one.name}, </if>
+                <if test="one.type!=null"> `type` = #{one.type}, </if>
+                <if test="one.nameSort!=null"> `name_sort` = #{one.nameSort}, </if>
+                <if test="one.createTime!=null"> `create_time` = #{one.createTime}, </if>
+                <if test="one.updateTime!=null"> `update_time` = #{one.updateTime}, </if>
             </set>
             WHERE TRUE
-              AND id = #{one.id}
+              AND `id` = #{one.id}
             <!-- @formatter:on -->
         </foreach>
     </update>
@@ -93,15 +93,15 @@
     <update id="batchUpdateEvenNull">
         <foreach collection="entities" item="one" separator=";">
             <!-- @formatter:off -->
-            UPDATE card
+            UPDATE `card`
             SET
-                name = #{one.name},
-                type = #{one.type},
-                name_sort = #{one.nameSort},
-                create_time = #{one.createTime},
-                update_time = #{one.updateTime}
+                `name` = #{one.name},
+                `type` = #{one.type},
+                `name_sort` = #{one.nameSort},
+                `create_time` = #{one.createTime},
+                `update_time` = #{one.updateTime}
             WHERE TRUE
-              AND id = #{one.id}
+              AND `id` = #{one.id}
             <!-- @formatter:on -->
         </foreach>
     </update>
@@ -110,38 +110,38 @@
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM card
+        FROM `card`
         WHERE TRUE
-          AND id = #{id}
+          AND `id` = #{id}
         <!-- @formatter:on -->
     </select>
 
     <update id="updateById" parameterType="cn.wx.elephant.biz.bean.entity.CardEntity">
         <!-- @formatter:off -->
-        UPDATE card
+        UPDATE `card`
         <set>
-            <if test="name!=null"> name = #{name}, </if>
-            <if test="type!=null"> type = #{type}, </if>
-            <if test="nameSort!=null"> name_sort = #{nameSort}, </if>
-            <if test="createTime!=null"> create_time = #{createTime}, </if>
-            <if test="updateTime!=null"> update_time = #{updateTime}, </if>
+            <if test="name!=null"> `name` = #{name}, </if>
+            <if test="type!=null"> `type` = #{type}, </if>
+            <if test="nameSort!=null"> `name_sort` = #{nameSort}, </if>
+            <if test="createTime!=null"> `create_time` = #{createTime}, </if>
+            <if test="updateTime!=null"> `update_time` = #{updateTime}, </if>
         </set>
         WHERE TRUE
-          AND id = #{id}
+          AND `id` = #{id}
         <!-- @formatter:on -->
         </update>
 
     <update id="updateByIdEvenNull" parameterType="cn.wx.elephant.biz.bean.entity.CardEntity">
         <!-- @formatter:off -->
-        UPDATE card
+        UPDATE `card`
         SET
-            name = #{name},
-            type = #{type},
-            name_sort = #{nameSort},
-            create_time = #{createTime},
-            update_time = #{updateTime}
+            `name` = #{name},
+            `type` = #{type},
+            `name_sort` = #{nameSort},
+            `create_time` = #{createTime},
+            `update_time` = #{updateTime}
         WHERE TRUE
-          AND id = #{id}
+          AND `id` = #{id}
         <!-- @formatter:on -->
     </update>
 
@@ -149,9 +149,9 @@
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM card
+        FROM `card`
         WHERE TRUE
-          AND id IN (<foreach collection="ids" item="one" separator=",">#{one}</foreach>)
+          AND `id` IN (<foreach collection="ids" item="one" separator=",">#{one}</foreach>)
         <!-- @formatter:on -->
     </select>
 
@@ -159,9 +159,9 @@
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM card
+        FROM `card`
         WHERE TRUE
-          AND id IN (<foreach collection="ids" item="one" separator=",">#{one}</foreach>)
+          AND `id` IN (<foreach collection="ids" item="one" separator=",">#{one}</foreach>)
         <!-- @formatter:on -->
     </select>
 
@@ -169,14 +169,14 @@
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM card
+        FROM `card`
         WHERE TRUE
-          <if test="id!=null"> AND id = #{id} </if>
-          <if test="name!=null"> AND name = #{name} </if>
-          <if test="type!=null"> AND type = #{type} </if>
-          <if test="nameSort!=null"> AND name_sort = #{nameSort} </if>
-          <if test="createTime!=null"> AND create_time = #{createTime} </if>
-          <if test="updateTime!=null"> AND update_time = #{updateTime} </if>
+          <if test="id!=null"> AND `id` = #{id} </if>
+          <if test="name!=null"> AND `name` = #{name} </if>
+          <if test="type!=null"> AND `type` = #{type} </if>
+          <if test="nameSort!=null"> AND `name_sort` = #{nameSort} </if>
+          <if test="createTime!=null"> AND `create_time` = #{createTime} </if>
+          <if test="updateTime!=null"> AND `update_time` = #{updateTime} </if>
         <!-- @formatter:on -->
     </select>
 
@@ -184,11 +184,40 @@
         <!-- @formatter:off -->
         SELECT
             <include refid="all"/>
-        FROM card
+        FROM `card`
         WHERE TRUE
-        LIMIT 500
         <!-- @formatter:on -->
     </select>
 
-    <!-- 从锚点<5d1fdc>到本行之间的内容，由Allison 1875生成，请勿人为修改 <e4a43f> -->
+    <insert id="insertOrUpdate" parameterType="cn.wx.elephant.biz.bean.entity.CardEntity">
+        <!-- @formatter:off -->
+        INSERT INTO `card`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null"> `id`, </if>
+            <if test="name!=null"> `name`, </if>
+            <if test="type!=null"> `type`, </if>
+            <if test="nameSort!=null"> `name_sort`, </if>
+            <if test="createTime!=null"> `create_time`, </if>
+            <if test="updateTime!=null"> `update_time`, </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id!=null"> #{id}, </if>
+            <if test="name!=null"> #{name}, </if>
+            <if test="type!=null"> #{type}, </if>
+            <if test="nameSort!=null"> #{nameSort}, </if>
+            <if test="createTime!=null"> #{createTime}, </if>
+            <if test="updateTime!=null"> #{updateTime}, </if>
+        </trim>
+        ON DUPLICATE KEY UPDATE
+        <trim suffixOverrides=",">
+            <if test="name!=null"> `name` = #{name}, </if>
+            <if test="type!=null"> `type` = #{type}, </if>
+            <if test="nameSort!=null"> `name_sort` = #{nameSort}, </if>
+            <if test="createTime!=null"> `create_time` = #{createTime}, </if>
+            <if test="updateTime!=null"> `update_time` = #{updateTime}, </if>
+        </trim>
+        <!-- @formatter:on -->
+    </insert>
+
+    <!-- [END] Allison 1875 Lot No: PG0808R-E326B95E (don't modify manually) -->
 </mapper>

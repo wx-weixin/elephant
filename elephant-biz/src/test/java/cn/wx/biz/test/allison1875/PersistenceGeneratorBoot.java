@@ -21,14 +21,16 @@ public class PersistenceGeneratorBoot {
         config.setPassword("12345678");
         config.setAuthor("weixin");
         config.setSchema("majiang");
-        config.setTables(Lists.newArrayList("card"));
+        config.setTables(Lists.newArrayList("card","user"));
         config.setMapperXmlDirectoryPath("src/main/resources/mapper");
         config.setMapperPackage("cn.wx.elephant.biz.mapper");
         config.setEntityPackage("cn.wx.elephant.biz.bean.entity");
+        config.setSuperEntityQualifier("cn.wx.elephant.core.bean.EntityAncestor");
         config.setEnableGenerateDesign(false);
         config.setDesignPackage("cn.wx.elephant.biz.bean.querydesign");
         config.setDisableBatchInsert(false);
         config.setDisableBatchUpdate(false);
+        config.setDisableInsertOrUpdate(false);
 //        config.setDeletedSql("valid_flag = false");
 //        config.setNotDeletedSql("valid_flag = true");
         EnumConfig enumConfig = new EnumConfig();

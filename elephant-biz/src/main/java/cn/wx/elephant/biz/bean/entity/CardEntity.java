@@ -1,14 +1,14 @@
 package cn.wx.elephant.biz.bean.entity;
 
 import lombok.Data;
-import com.yilian.woketech.core.bean.EntityAncestor;
+import cn.wx.elephant.core.bean.EntityAncestor;
 import lombok.EqualsAndHashCode;
 
 /**
  * 牌信息
  * <p>card
  *
- * <p><p><strong>该类型由Allison 1875生成，请勿人为修改</strong>
+ * <p> Allison 1875 Lot No: PG0808R-E326B95E (don't modify manually)
  *
  * @author weixin 2023-06-01
  */
@@ -27,7 +27,6 @@ public class CardEntity extends EntityAncestor implements Cloneable {
     /**
      * 性别 1-万 2-饼 3-条 4-字
      * <p>type
-     * <p>长度：0
      * <p>不能为null
      */
     private Integer type;
@@ -35,7 +34,6 @@ public class CardEntity extends EntityAncestor implements Cloneable {
     /**
      * 牌的大小
      * <p>name_sort
-     * <p>长度：0
      * <p>不能为null
      */
     private Integer nameSort;
