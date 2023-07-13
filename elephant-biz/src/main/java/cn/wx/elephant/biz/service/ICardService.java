@@ -1,7 +1,8 @@
 package cn.wx.elephant.biz.service;
 
 import java.util.List;
-import cn.wx.elephant.biz.bean.dto.CardBriefResDto;
+import cn.wx.elephant.biz.bean.dto.card.resp.CardBriefRes;
+import cn.wx.elephant.biz.bean.dto.card.resp.CardSendRes;
 import cn.wx.elephant.biz.bean.entity.CardEntity;
 
 /**
@@ -9,13 +10,18 @@ import cn.wx.elephant.biz.bean.entity.CardEntity;
  */
 public interface ICardService {
 
-
+    /**
+     * 初始化
+     */
     List<CardEntity> initCard();
 
     /**
      * 洗牌
      */
-    List<CardBriefResDto> chaos();
+    List<CardBriefRes> chaos();
 
-
+    /**
+     * 发牌
+     */
+    CardSendRes send(int startNum);
 }

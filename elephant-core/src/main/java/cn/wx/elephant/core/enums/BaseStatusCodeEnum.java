@@ -21,16 +21,6 @@ public enum BaseStatusCodeEnum implements EnumAncestor<String> {
     B000004("B00004", "数据异常"),
     B000005("B00005", "消息发送失败"),
 
-
-
-
-    B000100("B000100", "调用basic服务异常"),
-    B000101("B000101", "调用backstage服务异常"),
-    B000102("B000102", "调用mobile服务异常"),
-    B000103("B000103", "调用duty服务异常"),
-    B000104("B000104", "调用sign服务异常"),
-    B000105("B000105", "调用trade服务异常"),
-
     ;
 
     @JsonValue

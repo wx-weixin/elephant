@@ -1,20 +1,12 @@
 package cn.wx.elephant.biz.serviceimpl;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import org.springframework.stereotype.Service;
-import cn.hutool.core.collection.CollectionUtil;
-import cn.wx.elephant.biz.bean.dto.CardBriefResDto;
+import cn.wx.elephant.biz.bean.dto.card.resp.CardBriefRes;
+import cn.wx.elephant.biz.bean.dto.card.resp.CardSendRes;
 import cn.wx.elephant.biz.bean.entity.CardEntity;
-import cn.wx.elephant.biz.bean.enums.BigNumEnum;
-import cn.wx.elephant.biz.bean.enums.CardTypeEnum;
-import cn.wx.elephant.biz.bean.enums.CardWordEnum;
 import cn.wx.elephant.biz.service.ICardService;
 import cn.wx.elephant.biz.utils.CardUtil;
-import cn.wx.elephant.core.idwork.IdWorkHandler;
 import cn.wx.elephant.core.utils.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,11 +25,22 @@ public class CardService implements ICardService {
 
 
     @Override
-    public List<CardBriefResDto> chaos() {
+    public List<CardBriefRes> chaos() {
         List<CardEntity> cardEntities = CardUtil.chaos();
+        return ObjectUtil.copy(cardEntities, CardBriefRes.class);
+    }
 
-        List<CardBriefResDto> list = ObjectUtil.copy(cardEntities, CardBriefResDto.class);
-        return list;
+    @Override
+    public CardSendRes send(int startNum) {
+        if(startNum < 2 || startNum > 12){
+            return null;
+        }
+        List<CardBriefRes> chaos = chaos();
+        List<CardBriefRes> sternList = chaos.subList(0, startNum);
+        List<CardBriefRes> cardList = chaos.subList(startNum, chaos.size());
+
+
+        return null;
     }
 
 }

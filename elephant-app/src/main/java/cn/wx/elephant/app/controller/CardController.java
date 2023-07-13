@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import cn.wx.elephant.biz.bean.dto.CardBriefResDto;
+import cn.wx.elephant.biz.bean.dto.card.resp.CardBriefRes;
 import cn.wx.elephant.biz.bean.entity.CardEntity;
 import cn.wx.elephant.biz.service.ICardService;
 import jakarta.annotation.Resource;
@@ -27,7 +27,7 @@ public class CardController {
     }
 
     @GetMapping("/chaos")
-    public List<CardBriefResDto> chaos(){
+    public List<CardBriefRes> chaos(){
         return cardService.chaos();
     }
 }
