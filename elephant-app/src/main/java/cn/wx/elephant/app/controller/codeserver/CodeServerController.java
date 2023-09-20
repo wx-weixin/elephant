@@ -1,6 +1,5 @@
 package cn.wx.elephant.app.controller.codeserver;
 
-import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +20,9 @@ public class CodeServerController {
     @Resource
     private CodeServerService codeServerService;
 
+    /**
+     * 获取 coderServer 实例信息
+     */
     @GetMapping("/getCode")
     public CodeServerBo getCode(@RequestParam(name = "userId") String userId){
         return codeServerService.getCode(userId);

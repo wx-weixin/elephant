@@ -1,6 +1,5 @@
 package cn.wx.elephant.biz.serviceimpl;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,7 +8,6 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.wx.elephant.biz.bean.Bo.CodeServerBo;
 import cn.wx.elephant.core.ssh.SshClient;
 import cn.wx.elephant.core.ssh.SshContextConf;
-import cn.wx.elephant.core.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -39,13 +37,16 @@ public class CodeServerService {
         if (map.get(userId) != null) {
             return map.get(userId);
         }
-        // 启动容器分给用户
+
+        // 获取ssh命令
         String ssh = getSsh(port, password, userId);
+        // 启动容器命令，得到容器id
         List<String> codeIds = client.executeExec(ssh);
         if (CollectionUtil.isEmpty(codeIds) || codeIds.size() > 1) {
             log.error("启动失败");
             return null;
         }
+        // 组装数据返回给前端
         String codeId = codeIds.get(0);
         CodeServerBo codeServerBo = new CodeServerBo();
         codeServerBo.setUserId(userId);
